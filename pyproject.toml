@@ -1,0 +1,40 @@
+[project]
+name = "hatch-django-locales"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    {name="Felix Rindt", email="felix@ephios.de"}
+]
+requires-python = ">=3.10"
+dependencies = [
+    "django"
+]
+license = "MIT"
+
+[dependency-groups]
+dev = [
+    "prek>=0.3.1",
+    "ruff>=0.15.0",
+]
+
+[project.entry-points."hatch.build.hooks"]
+django-locales = "hatch_django_locales.hook:DjangoLocaleBuildHook"
+
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+[tool.uv-dynamic-versioning]
+fallback-version = "0.0.0"  # used if no VCS info is available, e.g. dependabot builds
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true }}]
+
+# format and linting
+[tool.ruff]
+line-length = 100
+[tool.ruff.format]
+preview = true
+[tool.ruff.lint]
+preview = true
