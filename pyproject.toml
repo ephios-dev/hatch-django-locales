@@ -1,6 +1,6 @@
 [project]
 name = "hatch-django-locales"
-version = "0.1.0"
+dynamic=["version"]
 description = "A hatchling build hook to compile django locale files during build time"
 readme = "README.md"
 authors = [
