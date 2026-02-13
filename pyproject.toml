@@ -12,6 +12,9 @@ dependencies = [
 ]
 license = "MIT"
 
+[project.urls]
+Repository = "https://github.com/ephios-dev/hatch-django-locales"
+
 [dependency-groups]
 dev = [
     "prek>=0.3.1",
