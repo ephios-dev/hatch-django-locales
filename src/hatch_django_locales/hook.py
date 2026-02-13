@@ -1,4 +1,5 @@
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
+from hatchling.plugin import hookimpl
 import subprocess
 from pathlib import Path
 
@@ -19,3 +20,7 @@ class DjangoLocaleBuildHook(BuildHookInterface):
                 )
             except Exception as e:
                 raise RuntimeError(f"Failed to compile locales in {loc}: {e}")
+
+@hookimpl
+def hatch_register_build_hook():
+    return DjangoLocaleBuildHook
