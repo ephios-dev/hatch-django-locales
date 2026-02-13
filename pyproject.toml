@@ -19,7 +19,7 @@ dev = [
 ]
 
 [project.entry-points.hatch]
-django-locales = "hatch_django_locales.hook"
+django-locales = "hatch_django_locales.hooks"
 
 [build-system]
 requires = ["hatchling", "uv-dynamic-versioning"]
