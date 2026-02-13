@@ -15,3 +15,5 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.hooks.django-locales]
 ```
+
+Make sure that the ``.mo`` files are actually included in the wheels produced by your build process.
