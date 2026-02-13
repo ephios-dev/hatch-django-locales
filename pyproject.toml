@@ -18,8 +18,8 @@ dev = [
     "ruff>=0.15.0",
 ]
 
-[project.entry-points."hatch.build.hooks"]
-django-locales = "hatch_django_locales.hook:DjangoLocaleBuildHook"
+[project.entry-points.hatch]
+django-locales = "hatch_django_locales.hook"
 
 [build-system]
 requires = ["hatchling", "uv-dynamic-versioning"]
