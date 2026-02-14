@@ -1,3 +1,5 @@
+import itertools
+
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 from hatchling.plugin import hookimpl
 import subprocess
@@ -8,8 +10,10 @@ class DjangoLocaleBuildHook(BuildHookInterface):
 
     def initialize(self, version, build_data):
         # Search inside 'src/' for Django apps with locale folders
-        root = Path(self.root) / "src"
-        locale_dirs = list(root.glob("**/locale"))
+        locale_dirs = itertools.chain(*(
+            (Path(self.root)/search_directory).glob("**/locale")
+            for search_directory in self.config.get("search-directories", ["."])
+        ))
 
         for loc in locale_dirs:
             try:
