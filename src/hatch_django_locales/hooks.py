@@ -9,7 +9,6 @@ class DjangoLocaleBuildHook(BuildHookInterface):
     PLUGIN_NAME = "django-locales"
 
     def initialize(self, version, build_data):
-        # Search inside 'src/' for Django apps with locale folders
         locale_dirs = itertools.chain(*(
             (Path(self.root)/search_directory).glob("**/locale")
             for search_directory in self.config.get("search-directories", ["."])
