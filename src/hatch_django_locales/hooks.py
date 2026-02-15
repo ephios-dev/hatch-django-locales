@@ -5,14 +5,17 @@ from hatchling.plugin import hookimpl
 import subprocess
 from pathlib import Path
 
+
 class DjangoLocaleBuildHook(BuildHookInterface):
     PLUGIN_NAME = "django-locales"
 
     def initialize(self, version, build_data):
-        locale_dirs = itertools.chain(*(
-            (Path(self.root)/search_directory).glob("**/locale")
-            for search_directory in self.config.get("search-directories", ["."])
-        ))
+        locale_dirs = itertools.chain(
+            *(
+                (Path(self.root) / search_directory).glob("**/locale")
+                for search_directory in self.config.get("search-directories", ["."])
+            )
+        )
 
         for loc in locale_dirs:
             try:
@@ -23,6 +26,7 @@ class DjangoLocaleBuildHook(BuildHookInterface):
                 )
             except Exception as e:
                 raise RuntimeError(f"Failed to compile locales in {loc}: {e}")
+
 
 @hookimpl
 def hatch_register_build_hook():
